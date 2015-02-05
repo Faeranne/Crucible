@@ -1,0 +1,10 @@
+{
+  "name": "Crucible",
+  "main": "index.html",
+  "window": {},
+  "dependencies": {
+    "coffee-script": "^1.9.0",
+    "request": "^2.53.0",
+    "underscore": "^1.7.0"
+  }
+}
