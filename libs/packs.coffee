@@ -1,11 +1,26 @@
 fs = require 'fs'
 path = require 'path'
 helpers = require './helpers'
-request = require 'request'
+request = require 'sync-request'
 
 module.exports = self = 
-	getPackProfile: (url,callback) ->
-		request url, (err,res,body) ->	
-			if err
-				throw err
-			callback null,JSON.parse(body)
+	remotePack: (url) ->
+		pack = helpers.fetchJson(url)
+		this.mods = pack.mods
+		this.updateUrl = pack.url
+		this.path = path.join helpers.getDirectory(), 'modpacks', pack.name
+		return this
+
+	localPack: (name) ->
+		this.path = path.join helpers.getDirectory(), 'modpacks', name
+		if fs.existsSync path.join dir, 'pack.json'
+			pack = JSON.parse fs.readFileSync path.join this.path, 'pack.json'
+			this.installed = true
+			this.mods = pack.mods
+		else
+			this.installed = false
+			this.mods = []
+		return this
+	createPack: (name) ->
+		return this
+		

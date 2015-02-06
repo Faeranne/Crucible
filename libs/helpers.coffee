@@ -1,6 +1,7 @@
 os = require 'os'
 fs = require 'fs'
 path = require 'path'
+AdmZip = require 'adm-zip'
 module.exports = self = 
 	getDirectory: ->
 		if os.platform() == "linux"
@@ -25,6 +26,38 @@ module.exports = self =
 		file = self.getLauncherProfiles()
 		file.profiles[name]=profile
 		self.saveLauncherProfiles(file)	
+	getAllPacks: () ->
+		dir = path.join self.getDirectory() + '/modpacks/'
+		packs = fs.readdirSync(dir)
+		return packs
 	listProfiles: ->
 		profiles = self.getLauncherProfiles().profiles
 		Object.keys(profiles)
+	fetchJson: (url) ->
+		response = request('get', url)
+		return JSON.parse(response.getBody().toString())
+	getModInfo: (file) ->
+		zip = new AdmZip file
+		zipEntries = zip.getEntries();
+		infoFile = zip.getEntry 'mcmod.info'
+		if not infoFile
+			return false
+		info = JSON.parse(infoFile.getData().toString().replace(/(\r\n|\n|\r)/gm,""))
+		if info.length
+			info = info[0]
+		return info
+	getModList: (dir) ->
+		dir = path.join dir, 'mods'
+		mods = []
+		modDir = fs.readdirSync(dir)
+		for item in modDir
+			stat = fs.statSync path.join dir, item
+			if stat.isFile()
+				info = self.getModInfo path.join dir, item
+				if not info
+					info = {}
+				info.file = item
+				if not info.name
+					info.name = item.replace(/\.[^/.]+$/, "")
+				mods.push(info)
+		return mods
