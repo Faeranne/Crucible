@@ -15,7 +15,8 @@ $ ->
 		.click ->
 			currentPack = new Pack $('#packs').val()
 			$ '#pack' 
-				.removeClass() $ '#mod'
+				.removeClass() 
+			$ '#mod'
 				.removeClass()
 				.addClass 'hidden'
 			$ '#mods'
