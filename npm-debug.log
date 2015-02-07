@@ -1,0 +1,91 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/blixa/.nvm/v0.10.36/bin/node',
+1 verbose cli   '/home/blixa/.nvm/v0.10.36/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'nomnpm' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.36
+4 warn package.json Crucible@ No description
+5 warn package.json Crucible@ No repository field.
+6 warn package.json Crucible@ No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'nomnpm', null ]
+9 verbose cache add name=undefined spec="nomnpm" args=["nomnpm",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'nomnpm',
+10 verbose parsed url   path: 'nomnpm',
+10 verbose parsed url   href: 'nomnpm' }
+11 silly lockFile 163c52f5-nomnpm nomnpm
+12 verbose lock nomnpm /home/blixa/.npm/163c52f5-nomnpm.lock
+13 silly lockFile 163c52f5-nomnpm nomnpm
+14 silly lockFile 163c52f5-nomnpm nomnpm
+15 verbose addNamed [ 'nomnpm', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile 39c2dc55-nomnpm nomnpm@
+18 verbose lock nomnpm@ /home/blixa/.npm/39c2dc55-nomnpm.lock
+19 silly addNameRange { name: 'nomnpm', range: '*', hasData: false }
+20 verbose request where is /nomnpm
+21 verbose request registry https://registry.npmjs.org/
+22 verbose request id 1cb17d079d8e4840
+23 verbose url raw /nomnpm
+24 verbose url resolving [ 'https://registry.npmjs.org/', './nomnpm' ]
+25 verbose url resolved https://registry.npmjs.org/nomnpm
+26 verbose request where is https://registry.npmjs.org/nomnpm
+27 info trying registry request attempt 1 at 22:34:22
+28 http GET https://registry.npmjs.org/nomnpm
+29 http 404 https://registry.npmjs.org/nomnpm
+30 verbose headers { date: 'Sat, 07 Feb 2015 04:34:23 GMT',
+30 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+30 verbose headers   'content-type': 'application/json',
+30 verbose headers   'cache-control': 'max-age=0',
+30 verbose headers   'content-length': '52',
+30 verbose headers   'accept-ranges': 'bytes',
+30 verbose headers   via: '1.1 varnish',
+30 verbose headers   age: '0',
+30 verbose headers   'x-served-by': 'cache-ord1725-ORD',
+30 verbose headers   'x-cache': 'MISS',
+30 verbose headers   'x-cache-hits': '0',
+30 verbose headers   'x-timer': 'S1423283662.721305,VS0,VE279',
+30 verbose headers   'keep-alive': 'timeout=10, max=50',
+30 verbose headers   connection: 'Keep-Alive' }
+31 silly registry.get cb [ 404,
+31 silly registry.get   { date: 'Sat, 07 Feb 2015 04:34:23 GMT',
+31 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+31 silly registry.get     'content-type': 'application/json',
+31 silly registry.get     'cache-control': 'max-age=0',
+31 silly registry.get     'content-length': '52',
+31 silly registry.get     'accept-ranges': 'bytes',
+31 silly registry.get     via: '1.1 varnish',
+31 silly registry.get     age: '0',
+31 silly registry.get     'x-served-by': 'cache-ord1725-ORD',
+31 silly registry.get     'x-cache': 'MISS',
+31 silly registry.get     'x-cache-hits': '0',
+31 silly registry.get     'x-timer': 'S1423283662.721305,VS0,VE279',
+31 silly registry.get     'keep-alive': 'timeout=10, max=50',
+31 silly registry.get     connection: 'Keep-Alive' } ]
+32 silly lockFile 39c2dc55-nomnpm nomnpm@
+33 silly lockFile 39c2dc55-nomnpm nomnpm@
+34 error 404 404 Not Found: nomnpm
+34 error 404
+34 error 404 'nomnpm' is not in the npm registry.
+34 error 404 You should bug the author to publish it
+34 error 404 It was specified as a dependency of 'Crucible'
+34 error 404
+34 error 404 Note that you can also install from a
+34 error 404 tarball, folder, or http url, or git url.
+35 error System Linux 3.16.0-28-generic
+36 error command "/home/blixa/.nvm/v0.10.36/bin/node" "/home/blixa/.nvm/v0.10.36/bin/npm" "install" "--save" "nomnpm"
+37 error cwd /home/blixa/src/Crucible
+38 error node -v v0.10.36
+39 error npm -v 1.4.28
+40 error code E404
+41 verbose exit [ 1, true ]

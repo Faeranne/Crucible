@@ -19,6 +19,12 @@ $ ->
 			$ '#mod'
 				.removeClass()
 				.addClass 'hidden'
+			$ '#name'
+				.val currentPack._pack.name
+			$ '#version'
+				.val currentPack.forge
+			$ '#args'
+				.val currentPack.args
 			$ '#mods'
 				.find 'option'
 				.remove()
@@ -30,8 +36,13 @@ $ ->
 					.append option
 	$ '#updatePack'
 		.click ->
+			currentPack.forge = $ '#version'
+				.val()
+			currentPack.args = $ '#args'
+				.val()
 			currentPack.save()
-			$ '#packs'
+			console.log currentPack
+			$('#packs :selected')
 				.val currentPack.name
 				.text currentPack.name
 	$ '#editMod'

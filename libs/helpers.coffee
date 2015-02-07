@@ -2,6 +2,7 @@ os = require 'os'
 fs = require 'fs'
 path = require 'path'
 AdmZip = require 'adm-zip'
+request = require 'sync-request'
 module.exports = self = 
 	getDirectory: ->
 		if os.platform() == "linux"
@@ -35,7 +36,7 @@ module.exports = self =
 		Object.keys(profiles)
 	fetchJson: (url) ->
 		response = request('get', url)
-		return JSON.parse(response.getBody().toString())
+		return JSON.parse(response.body.toString())
 	getModInfo: (file) ->
 		try
 			zip = new AdmZip file
