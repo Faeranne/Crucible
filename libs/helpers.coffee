@@ -6,11 +6,12 @@ request = require 'sync-request'
 module.exports = self = 
 	getDirectory: ->
 		if os.platform() == "linux"
-			return path.join process.env.HOME, "/.minecraft"
+			dir = path.join process.env.HOME, "/.minecraft"
 		if os.platform() is "win32" or "win64"
-			return path.join process.env.APPDATA, "/.minecraft"
+			dir = path.join process.env.APPDATA, "/.minecraft"
 		if os.platform() is "darwin"
-			return path.join process.env.HOME, "/Library/Application Support/minecraft"
+			dir = path.join process.env.HOME, "/Library/Application Support/minecraft"
+		return dir
 	getLauncherProfiles: ->
 		profilePath = self.getDirectory()
 		profilePath = path.join profilePath, 'launcher_profiles.json'

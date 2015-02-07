@@ -2,6 +2,8 @@ $ = require './libs/jquery.js'
 helpers = require './libs/helpers'
 Pack = require './libs/pack'
 $ ->
+	try
+		fs.mkdir path.join helpers.getDirectory(), 'modpacks'
 	packs = helpers.getAllPacks()
 	for pack in packs
 		option = $ '<option>'
