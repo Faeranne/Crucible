@@ -1,6 +1,6 @@
 window.navigator = navigator
 require('coffee-script/register')
 helpers = require('./libs/helpers')
-packs = require('./libs/packs')
+Pack = require('./libs/pack')
 main = require('./main')
 

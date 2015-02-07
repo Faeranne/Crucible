@@ -2,10 +2,21 @@
 	<head>
 		<title>Crucible</title>
 		<script src="app.js"></script>
+		<link rel="stylesheet" href="app.css"></script>
 	</head>
 	<body>
 		<select id='packs'>
 		</select>
 		<button id='selectPack'>Edit Pack</button>
+		<div id="pack" class="hidden">
+			<select id="mods">
+			</select>
+			<button id="editMod">Edit Mod</button>
+			<div id="mod" class="hidden">
+				<input type='text' id="modName"></input>
+				<button id="updateMod">Update Mod</button>
+			</div>
+			<button id="updatePack">UpdatePack</button>
+		</div>
 	</body>
 </html>

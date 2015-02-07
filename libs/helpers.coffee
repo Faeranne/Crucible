@@ -37,7 +37,10 @@ module.exports = self =
 		response = request('get', url)
 		return JSON.parse(response.getBody().toString())
 	getModInfo: (file) ->
-		zip = new AdmZip file
+		try
+			zip = new AdmZip file
+		catch
+			return false
 		zipEntries = zip.getEntries();
 		infoFile = zip.getEntry 'mcmod.info'
 		if not infoFile
