@@ -1,9 +1,11 @@
 $ = require './libs/jquery.js'
 helpers = require './libs/helpers'
 Pack = require './libs/pack'
+fs = require 'fs'
+path = require 'path'
 $ ->
 	try
-		fs.mkdir path.join helpers.getDirectory(), 'modpacks'
+		fs.mkdirSync(path.join(helpers.getDirectory(), 'modpacks'))
 	packs = helpers.getAllPacks()
 	for pack in packs
 		option = $ '<option>'
@@ -25,3 +27,10 @@ $ ->
 			pack.update()
 			$ '#response'
 				.text 'Done'
+		packs = helpers.getAllPacks()
+		for pack in packs
+			option = $ '<option>'
+				.val pack
+				.text pack
+			$ '#packs'
+				.append option
