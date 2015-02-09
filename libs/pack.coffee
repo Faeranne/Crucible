@@ -39,12 +39,11 @@ module.exports = self =	(name) ->
 					readFile path.join(dir, 'pack.json')
 						.then (pack)->
 							pack = JSON.parse pack
-							console.log pack
 							self._pack = pack
 							self.installed = true
 							self.setup()
 						, (err) ->
-							console.log(err)
+							console.error(err)
 							
 				else
 					self.installed = false
@@ -58,17 +57,41 @@ module.exports = self =	(name) ->
 			, (err) ->
 				console.error(err)
 	@setup = ->
-		@path = path.join helpers.getDirectory(), 'modpacks', @_pack.name
-		@args = @_pack.args
-		@mods = @_pack.mods
-		@forge = @_pack.forge
-		@url = @_pack.url
-		@_onReady()
+		self = @
+		if @_pack.remote
+			console.log 'remote pack found'
+			helpers.fetchJson @_pack.remote
+				.then (pack) ->
+					if pack.version > self._pack.version
+						console.log 'new version'
+						self._pack = pack
+					self.path = path.join helpers.getDirectory(), 'modpacks', self._pack.name
+					self.version = self._pack.version
+					self.args = self._pack.args
+					self.mods = self._pack.mods
+					self.forge = self._pack.forge
+					self.remotePack = self._pack.remote
+					self.url = self._pack.url
+					self.save()
+					self._onReady()
+				, (err) ->
+					console.err err
+		else
+			self.path = path.join helpers.getDirectory(), 'modpacks', @_pack.name
+			self.version = @_pack.version
+			self.args = @_pack.args
+			self.mods = @_pack.mods
+			self.forge = @_pack.forge
+			self.remotePack = @_pack.remote
+			self.url = @_pack.url
+			self._onReady()
 	@save = ->
 		@_pack.mods = @mods
 		@_pack.args = @args
 		@_pack.forge = @forge
 		@_pack.url = @url
+		@_pack.version = @version
+		@_pack.remote = @remotePack
 		try
 			fs.mkdirSync @path
 		fs.writeFileSync path.join(@path, 'pack.json'), 
