@@ -86,7 +86,9 @@ module.exports = self =	(name) ->
 		self = @
 		return new Promise (resolve, reject) ->
 			try
-				fs.mkdirSync path.join @path, 'mods'
+				fs.mkdirSync path.join self.path, 'mods'
+			catch err
+				console.error err
 			downloads = []
 			for mod in self.mods
 				download = self.url+'/'+ mod.file
