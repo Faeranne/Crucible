@@ -2,7 +2,9 @@ os = require 'os'
 fs = require 'fs'
 path = require 'path'
 AdmZip = require 'adm-zip'
-request = require 'sync-request'
+request = require 'request'
+Promise = require 'promise'
+
 module.exports = self = 
 	getDirectory: ->
 		if os.platform() == "linux"
@@ -35,8 +37,12 @@ module.exports = self =
 		profiles = self.getLauncherProfiles().profiles
 		Object.keys(profiles)
 	fetchJson: (url) ->
-		response = request('get', url)
-		return JSON.parse(response.body.toString())
+		return new Promise (fufill, reject) ->
+			request url, (err,_,body) ->
+				if err
+					reject err
+					return
+				fufill JSON.parse body
 	getModInfo: (file) ->
 		try
 			zip = new AdmZip file
@@ -65,3 +71,15 @@ module.exports = self =
 					info.name = item.replace(/\.[^/.]+$/, "")
 				mods.push(info)
 		return mods
+	downloadFile: (dir, url, file, log, progress) ->
+		return new Promise (resolve, reject) ->
+			log "starting download "+file
+			request
+				.get url
+				.on 'response', ->
+					log "Finished downloading "+file
+					progress()
+					resolve()
+				.on 'error', (err) ->
+					reject(err)
+				.pipe fs.createWriteStream path.join dir, file

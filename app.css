@@ -1,3 +1,8 @@
 .hidden {
 	display: none;
 }
+
+#response {
+	height: 100px;
+	overflow-x: hidden;
+}
