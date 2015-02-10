@@ -1,0 +1,13 @@
+box: wercker/nodejs
+# Build definition
+build:
+  # The steps that will be executed on build
+  steps:
+    # A step that executes `npm install` command
+    - npm-install
+    # A step that executes `gulp test` command
+   - hgen/gulp:
+     tasks: test lint
+
+
+

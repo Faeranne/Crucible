@@ -1,7 +1,7 @@
 Pack = require './libs/pack'
 
 opts = require "nomnom"
-	.parse();
+		.parse();
 
 name = opts[0]
 

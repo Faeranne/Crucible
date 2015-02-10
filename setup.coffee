@@ -14,8 +14,8 @@ $ ->
 	$ '#selectPack'
 		.click ->
 			currentPack = new Pack $('#packs').val()
-			$ '#pack' 
-				.removeClass() 
+			$ '#pack'
+				.removeClass()
 			$ '#mod'
 				.removeClass()
 				.addClass 'hidden'
@@ -32,7 +32,7 @@ $ ->
 				option = $ '<option>'
 					.val index
 					.text mod.name
-				$ '#mods' 
+				$ '#mods'
 					.append option
 	$ '#updatePack'
 		.click ->

@@ -5,7 +5,7 @@ AdmZip = require 'adm-zip'
 request = require 'request'
 Promise = require 'promise'
 
-module.exports = self = 
+module.exports = self =
 	getDirectory: ->
 		if os.platform() == "linux"
 			return path.join process.env.HOME, "/.minecraft"
@@ -28,7 +28,7 @@ module.exports = self =
 	saveProfile: (name, profile) ->
 		file = self.getLauncherProfiles()
 		file.profiles[name]=profile
-		self.saveLauncherProfiles(file)	
+		self.saveLauncherProfiles(file)
 	getAllPacks: () ->
 		dir = path.join self.getDirectory() + '/modpacks/'
 		packs = fs.readdirSync(dir)
@@ -48,7 +48,7 @@ module.exports = self =
 			zip = new AdmZip file
 		catch
 			return false
-		zipEntries = zip.getEntries();
+		zipEntries = zip.getEntries()
 		infoFile = zip.getEntry 'mcmod.info'
 		if not infoFile
 			return false
