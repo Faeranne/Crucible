@@ -53,8 +53,10 @@ $ ->
 							.text 'done'
 		packs = helpers.getAllPacks()
 		for pack in packs
+			# coffeelint: disable=indentation
 			option = $ '<option>'
 				.val pack
 				.text pack
+			# coffeelint: enable=indentation
 			$ '#packs'
 				.append option
