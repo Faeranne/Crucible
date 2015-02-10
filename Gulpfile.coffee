@@ -15,9 +15,9 @@ gulp.task 'test', (done) ->
 		.pipe istanbul.hookRequire()
 		.on 'finish', ->
 			if process.env.CI
-				reporter = 'nyan'
-			else
 				reporter = 'spec'
+			else
+				reporter = 'nyan'
 			gulp.src ['tests/*.coffee']
 				.pipe mocha
 					reporter:reporter
